@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from typing import Any
+import unicodedata
 
 import voluptuous as vol
 
@@ -11,6 +12,11 @@ from homeassistant.helpers import selector
 from .const import CONF_COUNTRY, CONF_REGION, COUNTRIES, DOMAIN, NAME, US_STATES
 
 ALL = "all"
+
+
+def _plain(text: str) -> str:
+    """Nom sans accents, pour trier les pays dans l'ordre alphabétique (« États-Unis » après « Canada »)."""
+    return "".join(c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c)).lower()
 
 
 def _title(code: str, region: str | None) -> str:
@@ -46,7 +52,7 @@ class ChildAlertConfigFlow(ConfigFlow, domain=DOMAIN):
                 selector.SelectSelectorConfig(
                     options=[
                         selector.SelectOptionDict(value=k, label=f"{v['name']} — {v['alert']}")
-                        for k, v in sorted(COUNTRIES.items(), key=lambda kv: kv[1]["name"])
+                        for k, v in sorted(COUNTRIES.items(), key=lambda kv: _plain(kv[1]["name"]))
                     ],
                     mode=selector.SelectSelectorMode.DROPDOWN,
                 )
