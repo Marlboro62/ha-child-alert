@@ -36,6 +36,8 @@ Intégration et carte Home Assistant pour être prévenu quand une **alerte d'en
 - une **fenêtre** s'ouvre par-dessus Home Assistant, sur chaque appareil, avec le **numéro à appeler** ; « J'ai pris connaissance » la ferme pour cette alerte ;
 - la **carte** affiche l'alerte en rouge ; sans alerte, un simple « Aucune alerte en cours » (ou rien du tout, au choix).
 
+**🎮 [Essayer la démo en ligne](https://marlboro62.github.io/ha-child-alert/docs/demo.html)** : la vraie carte et la fenêtre d'alerte pour chacun des 11 pays, avec des alertes fictives (aucune alerte, alerte en cours, source indisponible ; thème sombre, clair ou celui de Home Assistant).
+
 > **Intégration non officielle**, sans lien avec les autorités ni avec les médias cités. Elle ne remplace pas les canaux officiels (FR-Alert, Wireless Emergency Alerts, En Alerte…). En cas d'information, appelez toujours le **numéro indiqué dans l'alerte** et n'intervenez pas vous-même.
 
 ## Pays et sources

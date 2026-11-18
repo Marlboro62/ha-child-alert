@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerte Enlèvement, démo</title>
+<style>
+  body { margin: 0; padding: 24px 16px; background: #111827; font-family: Roboto, "Segoe UI", system-ui, sans-serif; color: #e5e7eb; }
+  body.light { background: #eef1f5; color: #1f2937; }
+  h1 { font-size: 1.2rem; margin: 0 0 4px; } p.intro { margin: 0 0 14px; font-size: .9rem; opacity: .85; max-width: 760px; line-height: 1.5; }
+  .fict { display: inline-block; margin-bottom: 16px; padding: 6px 12px; border-radius: 8px; background: #ffd23f; color: #1a2434; font-weight: 700; font-size: .85rem; }
+  .grid { display: grid; grid-template-columns: minmax(300px, 520px); gap: 20px; }
+  .bar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; }
+  .bar span { font-size: .8rem; opacity: .7; min-width: 70px; }
+  button, select { padding: 6px 12px; border-radius: 8px; border: 1px solid #4b5563; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+  select option { color: #111827; }
+  button.on { background: #1d93e3; border-color: #1d93e3; color: #fff; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<h1>Alerte Enlèvement</h1>
+<p class="intro">Démo de la vraie carte, sans Home Assistant : choisissez un pays, puis l'état du capteur. « Alerte en cours » ouvre aussi la fenêtre qui s'affiche par-dessus Home Assistant.</p>
+<div class="fict">⚠️ Toutes les alertes de cette page sont des exemples fictifs : aucun enfant, lieu ou média réel.</div>
+<div class="bar" id="pays"><span>Pays</span></div>
+<div class="bar" id="etat-us" hidden><span>État</span>
+  <select id="us"><option value="">Tous les États</option><option>California</option><option>Texas</option><option>Florida</option><option>New York</option><option>Ohio</option></select>
+</div>
+<div class="bar" id="etat"><span>Capteur</span>
+  <button data-e="clear" class="on">Aucune alerte</button>
+  <button data-e="on">Alerte en cours</button>
+  <button data-e="error">Source indisponible</button>
+  <button data-e="pop">Rejouer la fenêtre</button>
+</div>
+<div class="bar" id="theme"><span>Couleurs</span>
+  <button data-t="v2" class="on">Sombre</button>
+  <button data-t="light">Clair</button>
+  <button data-t="ha">Thème de Home Assistant</button>
+</div>
+<div class="grid" id="grid"></div>
+<script>
+// Home Assistant fournit <ha-card> et <ha-icon> ; ici, <ha-icon> affiche les icônes Material Design Icons.
+if (!customElements.get("ha-card")) customElements.define("ha-card", class extends HTMLElement {});
+if (!customElements.get("ha-icon")) customElements.define("ha-icon", class extends HTMLElement {
+  static get observedAttributes() { return ["icon"]; }
+  connectedCallback() { this._draw(); }
+  attributeChangedCallback() { this._draw(); }
+  _draw() {
+    const name = (this.getAttribute("icon") || "").replace(/^mdi:/, "");
+    if (!name) return;
+    const url = `https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/${name}.svg`;
+    this.style.cssText += `;display:inline-block;width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px);flex:none;` +
+      `background:currentColor;-webkit-mask:url(${url}) center/contain no-repeat;mask:url(${url}) center/contain no-repeat;`;
+  }
+});
+// la fenêtre d'alerte lit le capteur sur <home-assistant>, comme dans Home Assistant
+if (!customElements.get("home-assistant")) customElements.define("home-assistant", class extends HTMLElement {});
+</script>
+<home-assistant hidden></home-assistant>
+<script src="../custom_components/child_alert/frontend/child-alert-card.js"></script>
+<script>
+// Données fictives : capteur « Alerte enlèvement » tel que l'intégration le remplit, pour chaque pays
+const REPO = "https://github.com/Marlboro62/ha-child-alert";
+// silhouette dessinée : aucune photo réelle
+const IMG = new URL("exemple-fictif.svg", location.href).href;
+const OFFICIAL = { naad: "En Alerte (officiel)", nws: "National Weather Service (officiel)", news: "médias du pays" };
+const C = {
+  FR: { name: "France", alert: "Alerte Enlèvement", phone: "197", src: "news",
+    title: "EXEMPLE FICTIF · Alerte Enlèvement : une fillette de 6 ans enlevée",
+    summary: "Exemple de démonstration. L'enfant porte un manteau rouge et des baskets blanches. Le suspect circule dans une voiture grise.",
+    area: "Commune fictive (démo)" },
+  BE: { name: "Belgique", alert: "Child Alert", phone: "112", src: "news",
+    title: "EXEMPLE FICTIF · Child Alert : un garçon de 8 ans disparu",
+    summary: "Exemple de démonstration. Het kind draagt een blauwe jas (texte fictif).", area: "Commune fictive (démo)" },
+  CH: { name: "Suisse", alert: "Alerte enlèvement · Entführungsalarm", phone: "117", src: "news",
+    title: "EXEMPLE FICTIF · Alerte enlèvement : une enfant de 5 ans enlevée",
+    summary: "Exemple de démonstration. Beispieltext ohne reale Personen.", area: "Canton fictif (démo)" },
+  LU: { name: "Luxembourg", alert: "AMBER Alert", phone: "113", src: "news",
+    title: "EXEMPLE FICTIF · AMBER Alert Luxembourg : un enfant de 7 ans recherché",
+    summary: "Exemple de démonstration, sans personne réelle.", area: "Localité fictive (démo)" },
+  NL: { name: "Pays-Bas", alert: "AMBER Alert", phone: "112", src: "news",
+    title: "VOORBEELD · AMBER Alert: meisje van 9 jaar ontvoerd (fictief)",
+    summary: "Fictief voorbeeld voor de demo. Geen echte personen.", area: "Fictieve gemeente (demo)" },
+  GB: { name: "Royaume-Uni", alert: "Child Rescue Alert", phone: "999", src: "news",
+    title: "FICTIONAL EXAMPLE · Child Rescue Alert issued for missing 7-year-old",
+    summary: "Demo example only. No real people or places.", area: "Fictional town (demo)" },
+  IE: { name: "Irlande", alert: "Child Abduction Alert", phone: "999", src: "news",
+    title: "FICTIONAL EXAMPLE · Child Abduction Alert issued for 6-year-old boy",
+    summary: "Demo example only. No real people or places.", area: "Fictional county (demo)" },
+  CA: { name: "Canada", alert: "Alerte AMBER · AMBER Alert", phone: "911", src: "naad",
+    title: "EXEMPLE FICTIF · Alerte AMBER : enlèvement d'un enfant de 4 ans",
+    summary: "Exemple de démonstration au format En Alerte. Véhicule : berline grise (fictif).", area: "Région fictive (démo)",
+    expires: 6 },
+  US: { name: "États-Unis", alert: "AMBER Alert", phone: "911", src: "nws",
+    title: "FICTIONAL EXAMPLE · Child Abduction Emergency",
+    summary: "Demo example in the NWS format. Suspect vehicle: gray sedan (fictional).", area: "Fictional County (demo)",
+    expires: 8 },
+  MX: { name: "Mexique", alert: "Alerta Amber", phone: "911", src: "news",
+    title: "EJEMPLO FICTICIO · Alerta Amber: se busca a niña de 6 años",
+    summary: "Ejemplo de demostración. Sin personas reales.", area: "Municipio ficticio (demo)" },
+  AU: { name: "Australie", alert: "AMBER Alert", phone: "000", src: "news",
+    title: "FICTIONAL EXAMPLE · AMBER Alert issued for missing 5-year-old",
+    summary: "Demo example only. No real people or places.", area: "Fictional suburb (demo)" },
+};
+const ID = "binary_sensor.alerte_enlevement";
+let pays = "FR", etat = "clear", theme = "v2", n = 1;
+const iso = (h) => new Date(Date.now() + h * 3600e3).toISOString();
+
+const build = () => {
+  const c = C[pays], region = pays === "US" ? document.getElementById("us").value || null : null;
+  const a = { country: pays, country_name: c.name, region, alert_name: c.alert, phone: c.phone, source_type: OFFICIAL[c.src],
+    checked: iso(-0.05), errors: etat === "error" ? [c.src === "news" ? "médias : délai dépassé" : `${OFFICIAL[c.src]} : délai dépassé`] : null,
+    ended: iso(-24 * 9), friendly_name: "Alerte enlèvement" };
+  if (etat === "on") {
+    const media = c.src === "news";
+    Object.assign(a, { alert_id: `demo-${pays}-${n}`, method: media ? "media" : "official", since: iso(-1.5),
+      expires: c.expires ? iso(c.expires) : null, title: c.title, summary: c.summary,
+      area: region ? `${c.area}, ${region}` : c.area, image: IMG, url: REPO,
+      source: media ? null : OFFICIAL[c.src], sources: media ? ["Média national A (exemple)", "Média régional B (exemple)"] : [OFFICIAL[c.src]] });
+  }
+  const st = { entity_id: ID, state: etat === "on" ? "on" : "off", attributes: a, last_changed: `${pays}-${etat}-${n}` };
+  return { states: { [ID]: st }, entities: { [ID]: { entity_id: ID, platform: "child_alert" } },
+    themes: { darkMode: theme !== "light" }, locale: { language: "fr" } };
+};
+
+const grid = document.getElementById("grid");
+const draw = () => {
+  document.getElementById("child-alert-pop")?.remove();
+  const hass = build();
+  document.querySelector("home-assistant").hass = hass;
+  grid.innerHTML = "";
+  const card = document.createElement("child-alert-card");
+  card.setConfig({ entity: ID, theme: theme === "light" ? "auto" : theme });
+  grid.appendChild(card);
+  card.hass = hass;
+  // la fenêtre d'alerte s'ouvre dans les 5 s, comme dans Home Assistant
+};
+
+const bar = document.getElementById("pays");
+for (const [k, c] of Object.entries(C)) {
+  const b = document.createElement("button");
+  b.dataset.p = k; b.textContent = c.name; if (k === pays) b.className = "on";
+  bar.appendChild(b);
+}
+bar.addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-p]"); if (!b) return;
+  pays = b.dataset.p; n++;
+  bar.querySelectorAll("[data-p]").forEach((x) => x.classList.toggle("on", x === b));
+  document.getElementById("etat-us").hidden = pays !== "US";
+  draw();
+});
+document.getElementById("us").addEventListener("change", () => { n++; draw(); });
+document.getElementById("etat").addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-e]"); if (!b) return;
+  if (b.dataset.e === "pop") { if (etat !== "on") etat = "on"; n++; }
+  else { etat = b.dataset.e; if (etat === "on") n++; }
+  document.querySelectorAll("[data-e]").forEach((x) => x.classList.toggle("on", x.dataset.e === etat));
+  draw();
+});
+document.getElementById("theme").addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-t]"); if (!b) return;
+  theme = b.dataset.t;
+  document.body.classList.toggle("light", theme === "light");
+  document.querySelectorAll("[data-t]").forEach((x) => x.classList.toggle("on", x === b));
+  draw();
+});
+draw();
+</script>
+</body>
+</html>
