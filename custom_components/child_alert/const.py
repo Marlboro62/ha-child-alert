@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Any, Final
 
 DOMAIN: Final = "child_alert"
-VERSION: Final = "0.1.0b1"
+VERSION: Final = "0.1.0"
 NAME: Final = "Alerte Enlèvement"
 
 CONF_COUNTRY: Final = "country"
