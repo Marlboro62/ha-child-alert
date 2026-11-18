@@ -1,0 +1,36 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Alerts for this country (or state) are already set up."
+    },
+    "step": {
+      "user": {
+        "title": "Child abduction alert",
+        "description": "Pick the country whose child abduction alerts (AMBER Alert and equivalents) you want to follow. Unofficial integration: if you have information, always call the number given in the alert.",
+        "data": {
+          "country": "Country"
+        },
+        "data_description": {
+          "country": "Canada and the United States: official feeds. Other countries: the alert is detected in the headlines of at least two national media outlets."
+        }
+      },
+      "region": {
+        "title": "State",
+        "description": "Optional: limit alerts to one state. With a state picked, its media are also read, for alerts the National Weather Service does not relay.",
+        "data": {
+          "region": "State"
+        },
+        "data_description": {
+          "region": "“—”: all states (official alerts only)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "child_alert": {
+        "name": "Child abduction alert"
+      }
+    }
+  }
+}

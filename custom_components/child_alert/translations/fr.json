@@ -1,0 +1,36 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Les alertes de ce pays (ou de cet État) sont déjà suivies."
+    },
+    "step": {
+      "user": {
+        "title": "Alerte Enlèvement",
+        "description": "Choisissez le pays dont vous voulez suivre les alertes d'enlèvement d'enfant (AMBER Alert et équivalents). Intégration non officielle : en cas d'information, appelez toujours le numéro indiqué dans l'alerte.",
+        "data": {
+          "country": "Pays"
+        },
+        "data_description": {
+          "country": "Canada et États-Unis : flux officiels. Autres pays : l'alerte est repérée dans les titres d'au moins deux médias du pays."
+        }
+      },
+      "region": {
+        "title": "État",
+        "description": "Facultatif : limitez les alertes à un État. Avec un État choisi, les médias de cet État sont aussi lus, pour les alertes que la météo nationale ne relaie pas.",
+        "data": {
+          "region": "État"
+        },
+        "data_description": {
+          "region": "« — » : tous les États (alertes officielles seulement)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "child_alert": {
+        "name": "Alerte enlèvement"
+      }
+    }
+  }
+}
