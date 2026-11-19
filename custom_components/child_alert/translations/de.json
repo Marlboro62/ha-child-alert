@@ -1,0 +1,53 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Die Alarme dieses Landes (oder Bundesstaates) werden bereits verfolgt."
+    },
+    "step": {
+      "user": {
+        "title": "Entführungsalarm",
+        "description": "Wähle das Land, dessen Alarme bei Kindesentführung (AMBER Alert und Entsprechungen) du verfolgen willst. Inoffizielle Integration: wenn du etwas weißt, ruf immer die im Alarm angegebene Nummer an.",
+        "data": {
+          "country": "Land"
+        },
+        "data_description": {
+          "country": "Kanada und USA: offizielle Feeds. Andere Länder: der Alarm wird in den Schlagzeilen von mindestens zwei Medien des Landes erkannt."
+        }
+      },
+      "region": {
+        "title": "Bundesstaat",
+        "description": "Optional: Alarme auf einen Bundesstaat beschränken. Mit gewähltem Bundesstaat werden auch dessen Medien gelesen, für Alarme, die der nationale Wetterdienst nicht weitergibt.",
+        "data": {
+          "region": "Bundesstaat"
+        },
+        "data_description": {
+          "region": "„—“: alle Bundesstaaten (nur offizielle Alarme)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "child_alert": {
+        "name": "Entführungsalarm"
+      }
+    }
+  },
+  "selector": {
+    "country": {
+      "options": {
+        "AU": "Australien — AMBER Alert",
+        "BE": "Belgien — Child Alert",
+        "CA": "Kanada — Alerte AMBER · AMBER Alert",
+        "CH": "Schweiz — Alerte enlèvement · Entführungsalarm",
+        "FR": "Frankreich — Alerte Enlèvement",
+        "GB": "Vereinigtes Königreich — Child Rescue Alert",
+        "IE": "Irland — Child Abduction Alert",
+        "LU": "Luxemburg — AMBER Alert",
+        "MX": "Mexiko — Alerta Amber",
+        "NL": "Niederlande — AMBER Alert",
+        "US": "USA — AMBER Alert"
+      }
+    }
+  }
+}

@@ -36,11 +36,11 @@ Gemacht für: 🇨🇭 Schweiz · 🇱🇺 Luxemburg (und alle anderen Länder d
 
 Bei der Einrichtung wählst du **dein Land** (in den USA zusätzlich deinen Bundesstaat). Solange ein Alarm läuft:
 
-- schaltet der Sensor **Child abduction alert** auf „Erkannt“, mit Titel, Gebiet, Foto und Link, wenn die Quelle sie liefert;
-- öffnet sich ein **Fenster** über Home Assistant, auf jedem Gerät, mit der **Nummer, die du anrufen sollst**; « J'ai pris connaissance » („Zur Kenntnis genommen“) schließt es für diesen Alarm;
+- schaltet der Sensor **Entführungsalarm** auf „Erkannt“, mit Titel, Gebiet, Foto und Link, wenn die Quelle sie liefert;
+- öffnet sich ein **Fenster** über Home Assistant, auf jedem Gerät, mit der **Nummer, die du anrufen sollst**; **Zur Kenntnis genommen** schließt es für diesen Alarm;
 - zeigt die **Karte** den Alarm in Rot; ohne Alarm eine einfache Meldung „kein Alarm“ (oder gar nichts, nach Wahl).
 
-> **Sprache:** Einrichtungsdialog und Sensorname erscheinen auf Englisch oder Französisch, je nach Sprache von Home Assistant. Karte und Fenster sind **vorerst auf Französisch**.
+> **Sprache:** Einrichtungsdialog, Sensorname, Karte und Fenster folgen der Sprache von Home Assistant: Deutsch, Französisch, Englisch, Niederländisch oder Spanisch (Englisch für jede andere Sprache). Der Text des Alarms selbst (Titel, Zusammenfassung, Gebiet) bleibt in der Sprache der Quelle.
 
 **🎮 [Online-Demo ausprobieren](https://marlboro62.github.io/ha-child-alert/docs/demo.html)**: die echte Karte und das Alarmfenster für jedes der 11 Länder, mit erfundenen Alarmen (kein Alarm, laufender Alarm, Quelle nicht erreichbar; dunkles, helles oder Home-Assistant-Design).
 
@@ -104,7 +104,7 @@ Beispiel einer Automatisierung: eine Benachrichtigung aufs Handy, sobald ein Ala
 alias: Entführungsalarm - Benachrichtigung
 triggers:
   - trigger: state
-    entity_id: binary_sensor.alerte_enlevement_suisse_child_abduction_alert
+    entity_id: binary_sensor.alerte_enlevement_suisse_entfuhrungsalarm
     to: "on"
 actions:
   - action: notify.mobile_app_mein_handy

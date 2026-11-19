@@ -1,0 +1,53 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Las alertas de este país (o estado) ya se están siguiendo."
+    },
+    "step": {
+      "user": {
+        "title": "Alerta por sustracción de menores",
+        "description": "Elige el país cuyas alertas por sustracción de menores (AMBER Alert y equivalentes) quieres seguir. Integración no oficial: si tienes información, llama siempre al número indicado en la alerta.",
+        "data": {
+          "country": "País"
+        },
+        "data_description": {
+          "country": "Canadá y Estados Unidos: flujos oficiales. Otros países: la alerta se detecta en los titulares de al menos dos medios del país."
+        }
+      },
+      "region": {
+        "title": "Estado",
+        "description": "Opcional: limita las alertas a un estado. Con un estado elegido, también se leen sus medios, para las alertas que el servicio meteorológico nacional no difunde.",
+        "data": {
+          "region": "Estado"
+        },
+        "data_description": {
+          "region": "«—»: todos los estados (solo alertas oficiales)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "child_alert": {
+        "name": "Alerta Amber"
+      }
+    }
+  },
+  "selector": {
+    "country": {
+      "options": {
+        "AU": "Australia — AMBER Alert",
+        "BE": "Bélgica — Child Alert",
+        "CA": "Canadá — Alerte AMBER · AMBER Alert",
+        "CH": "Suiza — Alerte enlèvement · Entführungsalarm",
+        "FR": "Francia — Alerte Enlèvement",
+        "GB": "Reino Unido — Child Rescue Alert",
+        "IE": "Irlanda — Child Abduction Alert",
+        "LU": "Luxemburgo — AMBER Alert",
+        "MX": "México — Alerta Amber",
+        "NL": "Países Bajos — AMBER Alert",
+        "US": "Estados Unidos — AMBER Alert"
+      }
+    }
+  }
+}

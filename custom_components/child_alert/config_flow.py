@@ -55,6 +55,8 @@ class ChildAlertConfigFlow(ConfigFlow, domain=DOMAIN):
                         for k, v in sorted(COUNTRIES.items(), key=lambda kv: _plain(kv[1]["name"]))
                     ],
                     mode=selector.SelectSelectorMode.DROPDOWN,
+                    # libellés traduits (pays et nom de l'alerte) dans translations/*.json
+                    translation_key=CONF_COUNTRY,
                 )
             ),
         })
