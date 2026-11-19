@@ -30,6 +30,8 @@
 
 # Child Abduction Alert
 
+<img src="images/brand/icon-256.png" alt="Child abduction alert icon" width="128" align="right">
+
 Home Assistant integration and card that warn you when a **child abduction alert** is issued in your country: **AMBER Alert** (United States, Canada, Australia, Netherlands, Luxembourg), **Child Rescue Alert** (United Kingdom), **Child Abduction Alert** (Ireland), **Alerte Enlèvement** (France), **Child Alert** (Belgium)…
 
 Made for: 🇺🇸 United States · 🇨🇦 Canada · 🇬🇧 United Kingdom · 🇮🇪 Ireland · 🇦🇺 Australia (and every other country in the table below).

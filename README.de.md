@@ -30,6 +30,8 @@
 
 # Entführungsalarm
 
+<img src="images/brand/icon-256.png" alt="Symbol Entführungsalarm" width="128" align="right">
+
 Integration und Karte für Home Assistant, die dich warnen, sobald in deinem Land ein **Alarm wegen einer Kindesentführung** ausgelöst wird: **Entführungsalarm · Alerte enlèvement** (Schweiz), **AMBER Alert** (Luxemburg, Niederlande, USA, Kanada, Australien), **Alerte Enlèvement** (Frankreich), **Child Alert** (Belgien)…
 
 Gemacht für: 🇨🇭 Schweiz · 🇱🇺 Luxemburg (und alle anderen Länder der Tabelle unten).
