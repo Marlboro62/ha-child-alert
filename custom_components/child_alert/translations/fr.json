@@ -36,17 +36,17 @@
   "selector": {
     "country": {
       "options": {
-        "AU": "Australie — AMBER Alert",
-        "BE": "Belgique — Child Alert",
-        "CA": "Canada — Alerte AMBER · AMBER Alert",
-        "CH": "Suisse — Alerte enlèvement · Entführungsalarm",
-        "FR": "France — Alerte Enlèvement",
-        "GB": "Royaume-Uni — Child Rescue Alert",
-        "IE": "Irlande — Child Abduction Alert",
-        "LU": "Luxembourg — AMBER Alert",
-        "MX": "Mexique — Alerta Amber",
-        "NL": "Pays-Bas — AMBER Alert",
-        "US": "États-Unis — AMBER Alert"
+        "au": "Australie — AMBER Alert",
+        "be": "Belgique — Child Alert",
+        "ca": "Canada — Alerte AMBER · AMBER Alert",
+        "ch": "Suisse — Alerte enlèvement · Entführungsalarm",
+        "fr": "France — Alerte Enlèvement",
+        "gb": "Royaume-Uni — Child Rescue Alert",
+        "ie": "Irlande — Child Abduction Alert",
+        "lu": "Luxembourg — AMBER Alert",
+        "mx": "Mexique — Alerta Amber",
+        "nl": "Pays-Bas — AMBER Alert",
+        "us": "États-Unis — AMBER Alert"
       }
     }
   }
