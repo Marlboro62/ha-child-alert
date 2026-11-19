@@ -26,9 +26,13 @@
   ></a>
 </div>
 
+🌐 **Français** · [English](README.en.md) · [Nederlands](README.nl.md) · [Deutsch](README.de.md) · [Español](README.es.md)
+
 # Alerte Enlèvement
 
 Intégration et carte Home Assistant pour être prévenu quand une **alerte d'enlèvement d'enfant** est déclenchée dans votre pays : **Alerte Enlèvement** (France), **Child Alert** (Belgique), **AMBER Alert** (Canada, États-Unis, Pays-Bas, Luxembourg, Australie), **Child Rescue Alert** (Royaume-Uni)…
+
+Fait pour : 🇫🇷 France · 🇧🇪 Belgique (Wallonie, Bruxelles) · 🇨🇭 Suisse romande · 🇱🇺 Luxembourg · 🇨🇦 Québec (et tous les autres pays du tableau ci-dessous).
 
 À l'installation, vous choisissez **votre pays** (et, aux États-Unis, votre État). Quand une alerte est en cours :
 
