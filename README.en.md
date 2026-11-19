@@ -37,10 +37,10 @@ Made for: 🇺🇸 United States · 🇨🇦 Canada · 🇬🇧 United Kingdom �
 During setup you pick **your country** (and, in the United States, your state). While an alert is active:
 
 - the **Child abduction alert** sensor turns on ("Detected"), with the title, area, photo and link when the source provides them;
-- a **pop-up** opens on top of Home Assistant, on every device, with the **number to call**; « J'ai pris connaissance » ("I have read it") closes it for that alert;
+- a **pop-up** opens on top of Home Assistant, on every device, with the **number to call**; **I have read it** closes it for that alert;
 - the **card** shows the alert in red; with no alert, a simple "no alert in progress" message (or nothing at all, your choice).
 
-> **Language:** the setup screens and the sensor name follow your Home Assistant language (English or French). The card and the pop-up are **in French for now**.
+> **Language:** the setup screens, the sensor name, the card and the pop-up follow your Home Assistant language: English, French, Dutch, German or Spanish (English for any other language). The alert text itself (title, summary, area) stays in the language of the source.
 
 **🎮 [Try the online demo](https://marlboro62.github.io/ha-child-alert/docs/demo.html)**: the real card and pop-up for each of the 11 countries, with fictional alerts (no alert, active alert, source unavailable; dark, light or Home Assistant theme).
 

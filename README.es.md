@@ -36,11 +36,11 @@ Hecha para: 🇲🇽 México (y todos los demás países de la tabla de abajo).
 
 Al instalarla eliges **tu país** (y, en Estados Unidos, tu estado). Mientras haya una alerta activa:
 
-- el sensor **Child abduction alert** se activa («Detectado»), con el título, la zona, la foto y el enlace cuando la fuente los ofrece;
-- se abre una **ventana** sobre Home Assistant, en cada dispositivo, con el **número al que llamar**; « J'ai pris connaissance » («Enterado») la cierra para esa alerta;
+- el sensor **Alerta Amber** se activa («Detectado»), con el título, la zona, la foto y el enlace cuando la fuente los ofrece;
+- se abre una **ventana** sobre Home Assistant, en cada dispositivo, con el **número al que llamar**; **Enterado** la cierra para esa alerta;
 - la **tarjeta** muestra la alerta en rojo; sin alerta, un simple mensaje «ninguna alerta» (o nada, a tu elección).
 
-> **Idioma:** las pantallas de configuración y el nombre del sensor aparecen en inglés o en francés, según el idioma de Home Assistant. La tarjeta y la ventana están **por ahora en francés**.
+> **Idioma:** las pantallas de configuración, el nombre del sensor, la tarjeta y la ventana siguen el idioma de Home Assistant: español, francés, inglés, neerlandés o alemán (inglés para cualquier otro idioma). El texto de la alerta (título, resumen, zona) se mantiene en el idioma de la fuente.
 
 **🎮 [Prueba la demo en línea](https://marlboro62.github.io/ha-child-alert/docs/demo.html)**: la tarjeta real y la ventana de alerta para cada uno de los 11 países, con alertas ficticias (sin alerta, alerta activa, fuente no disponible; tema oscuro, claro o el de Home Assistant).
 
@@ -104,7 +104,7 @@ Ejemplo de automatización: una notificación en el celular cuando se emite una 
 alias: Alerta Amber - notificación
 triggers:
   - trigger: state
-    entity_id: binary_sensor.alerte_enlevement_mexique_child_abduction_alert
+    entity_id: binary_sensor.alerte_enlevement_mexique_alerta_amber
     to: "on"
 actions:
   - action: notify.mobile_app_mi_celular

@@ -32,5 +32,22 @@
         "name": "Alerte enlèvement"
       }
     }
+  },
+  "selector": {
+    "country": {
+      "options": {
+        "au": "Australie — AMBER Alert",
+        "be": "Belgique — Child Alert",
+        "ca": "Canada — Alerte AMBER · AMBER Alert",
+        "ch": "Suisse — Alerte enlèvement · Entführungsalarm",
+        "fr": "France — Alerte Enlèvement",
+        "gb": "Royaume-Uni — Child Rescue Alert",
+        "ie": "Irlande — Child Abduction Alert",
+        "lu": "Luxembourg — AMBER Alert",
+        "mx": "Mexique — Alerta Amber",
+        "nl": "Pays-Bas — AMBER Alert",
+        "us": "États-Unis — AMBER Alert"
+      }
+    }
   }
 }

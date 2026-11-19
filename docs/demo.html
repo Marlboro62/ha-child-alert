@@ -20,7 +20,7 @@
 </head>
 <body>
 <h1>Alerte Enlèvement</h1>
-<p class="intro">Démo de la vraie carte, sans Home Assistant : choisissez un pays, puis l'état du capteur. « Alerte en cours » ouvre aussi la fenêtre qui s'affiche par-dessus Home Assistant.</p>
+<p class="intro">Démo de la vraie carte, sans Home Assistant : choisissez un pays, puis l'état du capteur. La langue suit celle du pays et se change avec « Langue ». « Alerte en cours » ouvre aussi la fenêtre qui s'affiche par-dessus Home Assistant.</p>
 <div class="fict">⚠️ Toutes les alertes de cette page sont des exemples fictifs : aucun enfant, lieu ou média réel.</div>
 <div class="bar" id="pays"><span>Pays</span></div>
 <div class="bar" id="etat-us" hidden><span>État</span>
@@ -31,6 +31,13 @@
   <button data-e="on">Alerte en cours</button>
   <button data-e="error">Source indisponible</button>
   <button data-e="pop">Rejouer la fenêtre</button>
+</div>
+<div class="bar" id="langue"><span>Langue</span>
+  <button data-l="fr" class="on">Français</button>
+  <button data-l="en">English</button>
+  <button data-l="nl">Nederlands</button>
+  <button data-l="de">Deutsch</button>
+  <button data-l="es">Español</button>
 </div>
 <div class="bar" id="theme"><span>Couleurs</span>
   <button data-t="v2" class="on">Sombre</button>
@@ -103,12 +110,15 @@ const C = {
     summary: "Demo example only. No real people or places.", area: "Fictional suburb (demo)" },
 };
 const ID = "binary_sensor.alerte_enlevement";
-let pays = "FR", etat = "clear", theme = "v2", n = 1;
+let pays = "FR", etat = "clear", theme = "v2", lang = "fr", n = 1;
+// langue proposée à chaque changement de pays (celle de Home Assistant dans ce pays) ; modifiable ensuite
+const LANG_OF = { FR: "fr", BE: "fr", CH: "fr", LU: "fr", NL: "nl", GB: "en", IE: "en", CA: "en", US: "en", MX: "es", AU: "en" };
+const setLang = (l) => { lang = l; document.querySelectorAll("[data-l]").forEach((x) => x.classList.toggle("on", x.dataset.l === l)); };
 const iso = (h) => new Date(Date.now() + h * 3600e3).toISOString();
 
 const build = () => {
   const c = C[pays], region = pays === "US" ? document.getElementById("us").value || null : null;
-  const a = { country: pays, country_name: c.name, region, alert_name: c.alert, phone: c.phone, source_type: OFFICIAL[c.src],
+  const a = { country: pays, country_name: c.name, region, alert_name: c.alert, phone: c.phone, source_type: OFFICIAL[c.src], source_kind: c.src,
     checked: iso(-0.05), errors: etat === "error" ? [c.src === "news" ? "médias : délai dépassé" : `${OFFICIAL[c.src]} : délai dépassé`] : null,
     ended: iso(-24 * 9), friendly_name: "Alerte enlèvement" };
   if (etat === "on") {
@@ -120,7 +130,7 @@ const build = () => {
   }
   const st = { entity_id: ID, state: etat === "on" ? "on" : "off", attributes: a, last_changed: `${pays}-${etat}-${n}` };
   return { states: { [ID]: st }, entities: { [ID]: { entity_id: ID, platform: "child_alert" } },
-    themes: { darkMode: theme !== "light" }, locale: { language: "fr" } };
+    themes: { darkMode: theme !== "light" }, locale: { language: lang } };
 };
 
 const grid = document.getElementById("grid");
@@ -147,6 +157,7 @@ bar.addEventListener("click", (ev) => {
   pays = b.dataset.p; n++;
   bar.querySelectorAll("[data-p]").forEach((x) => x.classList.toggle("on", x === b));
   document.getElementById("etat-us").hidden = pays !== "US";
+  setLang(LANG_OF[pays] || "en");
   draw();
 });
 document.getElementById("us").addEventListener("change", () => { n++; draw(); });
@@ -155,6 +166,11 @@ document.getElementById("etat").addEventListener("click", (ev) => {
   if (b.dataset.e === "pop") { if (etat !== "on") etat = "on"; n++; }
   else { etat = b.dataset.e; if (etat === "on") n++; }
   document.querySelectorAll("[data-e]").forEach((x) => x.classList.toggle("on", x.dataset.e === etat));
+  draw();
+});
+document.getElementById("langue").addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-l]"); if (!b) return;
+  setLang(b.dataset.l); n++;
   draw();
 });
 document.getElementById("theme").addEventListener("click", (ev) => {

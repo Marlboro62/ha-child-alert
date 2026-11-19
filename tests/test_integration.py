@@ -45,7 +45,7 @@ async def test_parametrage_france_sans_alerte(hass: HomeAssistant, aioclient_moc
     mock_country(aioclient_mock, "FR")
     result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
     assert result["type"] is FlowResultType.FORM and result["step_id"] == "user"
-    done = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_COUNTRY: "FR"})
+    done = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_COUNTRY: "fr"})
     assert done["type"] is FlowResultType.CREATE_ENTRY and done["data"] == {CONF_COUNTRY: "FR"}
     await hass.async_block_till_done()
     states = hass.states.async_all("binary_sensor")
@@ -54,7 +54,7 @@ async def test_parametrage_france_sans_alerte(hass: HomeAssistant, aioclient_moc
     assert st.state == "off" and st.attributes["alert_name"] == "Alerte Enlèvement" and st.attributes["phone"] == "197"
     # même pays une seconde fois : refusé
     again = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
-    dup = await hass.config_entries.flow.async_configure(again["flow_id"], {CONF_COUNTRY: "FR"})
+    dup = await hass.config_entries.flow.async_configure(again["flow_id"], {CONF_COUNTRY: "fr"})
     assert dup["type"] is FlowResultType.ABORT and dup["reason"] == "already_configured"
 
 
@@ -83,7 +83,7 @@ async def test_etats_unis_avec_un_etat(hass: HomeAssistant, aioclient_mock):
     aioclient_mock.get(nws_url(NWS_URL, NWS_EVENT, "TX"), content=nws(live))
     mock_country(aioclient_mock, "US", region="Texas")
     result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
-    step = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_COUNTRY: "US"})
+    step = await hass.config_entries.flow.async_configure(result["flow_id"], {CONF_COUNTRY: "us"})
     assert step["type"] is FlowResultType.FORM and step["step_id"] == "region"
     done = await hass.config_entries.flow.async_configure(step["flow_id"], {CONF_REGION: "TX"})
     assert done["type"] is FlowResultType.CREATE_ENTRY and done["data"] == {CONF_COUNTRY: "US", CONF_REGION: "TX"}

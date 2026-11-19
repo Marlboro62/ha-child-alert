@@ -40,7 +40,9 @@ Fait pour : 🇫🇷 France · 🇧🇪 Belgique (Wallonie, Bruxelles) · 🇨�
 - une **fenêtre** s'ouvre par-dessus Home Assistant, sur chaque appareil, avec le **numéro à appeler** ; « J'ai pris connaissance » la ferme pour cette alerte ;
 - la **carte** affiche l'alerte en rouge ; sans alerte, un simple « Aucune alerte en cours » (ou rien du tout, au choix).
 
-**🎮 [Essayer la démo en ligne](https://marlboro62.github.io/ha-child-alert/docs/demo.html)** : la vraie carte et la fenêtre d'alerte pour chacun des 11 pays, avec des alertes fictives (aucune alerte, alerte en cours, source indisponible ; thème sombre, clair ou celui de Home Assistant).
+> **Langue** : l'installation, le nom du capteur, la carte et la fenêtre suivent la langue de Home Assistant : français, anglais, néerlandais, allemand ou espagnol (anglais pour toute autre langue). Le texte de l'alerte elle-même (titre, résumé, secteur) reste dans la langue de la source.
+
+**🎮 [Essayer la démo en ligne](https://marlboro62.github.io/ha-child-alert/docs/demo.html)** : la vraie carte et la fenêtre d'alerte pour chacun des 11 pays, avec des alertes fictives (aucune alerte, alerte en cours, source indisponible ; dans les cinq langues ; thème sombre, clair ou celui de Home Assistant).
 
 > **Intégration non officielle**, sans lien avec les autorités ni avec les médias cités. Elle ne remplace pas les canaux officiels (FR-Alert, Wireless Emergency Alerts, En Alerte…). En cas d'information, appelez toujours le **numéro indiqué dans l'alerte** et n'intervenez pas vous-même.
 

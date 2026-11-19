@@ -36,11 +36,11 @@ Gemaakt voor: 🇳🇱 Nederland · 🇧🇪 België (Vlaanderen) (en alle ander
 
 Bij de installatie kies je **je land** (en in de Verenigde Staten je staat). Zolang er een alarm loopt:
 
-- gaat de sensor **Child abduction alert** aan ("Gedetecteerd"), met de titel, het gebied, de foto en de link als de bron die geeft;
-- opent een **venster** boven Home Assistant, op elk apparaat, met het **nummer om te bellen**; « J'ai pris connaissance » ("Gelezen") sluit het voor dat alarm;
+- gaat de sensor **Alarm kinderontvoering** aan ("Gedetecteerd"), met de titel, het gebied, de foto en de link als de bron die geeft;
+- opent een **venster** boven Home Assistant, op elk apparaat, met het **nummer om te bellen**; **Gelezen** sluit het voor dat alarm;
 - toont de **kaart** het alarm in het rood; zonder alarm een eenvoudige melding "geen alarm" (of helemaal niets, naar keuze).
 
-> **Taal:** de installatieschermen en de naam van de sensor zijn in het Engels of Frans, volgens de taal van Home Assistant. De kaart en het venster zijn **voorlopig in het Frans**.
+> **Taal:** de installatieschermen, de naam van de sensor, de kaart en het venster volgen de taal van Home Assistant: Nederlands, Frans, Engels, Duits of Spaans (Engels voor elke andere taal). De tekst van het alarm zelf (titel, samenvatting, gebied) blijft in de taal van de bron.
 
 **🎮 [Probeer de online demo](https://marlboro62.github.io/ha-child-alert/docs/demo.html)**: de echte kaart en het venster voor elk van de 11 landen, met verzonnen alarmen (geen alarm, actief alarm, bron niet bereikbaar; donker, licht of het thema van Home Assistant).
 
@@ -104,7 +104,7 @@ Voorbeeld van een automatisering: een melding op de telefoon zodra een alarm wor
 alias: Alarm kinderontvoering - melding
 triggers:
   - trigger: state
-    entity_id: binary_sensor.alerte_enlevement_pays_bas_child_abduction_alert
+    entity_id: binary_sensor.alerte_enlevement_pays_bas_alarm_kinderontvoering
     to: "on"
 actions:
   - action: notify.mobile_app_mijn_telefoon

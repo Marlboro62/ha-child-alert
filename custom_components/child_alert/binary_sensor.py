@@ -59,6 +59,8 @@ class ChildAlertSensor(CoordinatorEntity[AlertCoordinator], BinarySensorEntity):
             "alert_name": c.country["alert"],
             "phone": c.country["phone"],
             "source_type": SOURCE_LABEL[c.country["source"]],
+            # code de la source (naad, nws, news) : la carte affiche son libellé dans la langue de l'utilisateur
+            "source_kind": c.country["source"],
             "checked": c.checked,
             "errors": c.errors or None,
         }

@@ -41,20 +41,23 @@ class ChildAlertConfigFlow(ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         if user_input is not None:
-            code = user_input[CONF_COUNTRY]
+            # valeurs du menu en minuscules (clés de traduction) : codes ISO en majuscules ensuite
+            code = str(user_input[CONF_COUNTRY]).upper()
             if code == "US":
                 self._country = code
                 return await self.async_step_region()
             return await self._create(code, None)
         guess = (self.hass.config.country or "").upper()
         schema = vol.Schema({
-            vol.Required(CONF_COUNTRY, default=guess if guess in COUNTRIES else "FR"): selector.SelectSelector(
+            vol.Required(CONF_COUNTRY, default=(guess if guess in COUNTRIES else "FR").lower()): selector.SelectSelector(
                 selector.SelectSelectorConfig(
                     options=[
-                        selector.SelectOptionDict(value=k, label=f"{v['name']} — {v['alert']}")
+                        selector.SelectOptionDict(value=k.lower(), label=f"{v['name']} — {v['alert']}")
                         for k, v in sorted(COUNTRIES.items(), key=lambda kv: _plain(kv[1]["name"]))
                     ],
                     mode=selector.SelectSelectorMode.DROPDOWN,
+                    # libellés traduits (pays et nom de l'alerte) dans translations/*.json
+                    translation_key=CONF_COUNTRY,
                 )
             ),
         })
