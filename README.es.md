@@ -30,6 +30,8 @@
 
 # Alerta Amber
 
+<img src="images/brand/icon-256.png" alt="Icono Alerta Amber" width="128" align="right">
+
 Integración y tarjeta de Home Assistant que te avisan cuando se emite una **alerta por sustracción o desaparición de un niño** en tu país: **Alerta Amber** (México), **AMBER Alert** (Estados Unidos, Canadá, Australia, Países Bajos, Luxemburgo), **Alerte Enlèvement** (Francia), **Child Alert** (Bélgica)…
 
 Hecha para: 🇲🇽 México (y todos los demás países de la tabla de abajo).

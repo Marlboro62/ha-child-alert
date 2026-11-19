@@ -10,7 +10,7 @@
  * © 2026 Marlboro62.
  */
 (() => {
-const CARD_VERSION = "0.2.0-beta.1";
+const CARD_VERSION = "0.2.0-beta.2";
 
 const DEFAULTS = {
   entity: "",

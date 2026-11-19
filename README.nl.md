@@ -30,6 +30,8 @@
 
 # Vermissingsalarm voor kinderen
 
+<img src="images/brand/icon-256.png" alt="Pictogram vermissingsalarm" width="128" align="right">
+
 Integratie en kaart voor Home Assistant die je waarschuwen zodra in je land een **alarm voor een vermist of ontvoerd kind** wordt uitgegeven: **AMBER Alert** (Nederland, Luxemburg), **Child Alert** (België), **Alerte Enlèvement** (Frankrijk), **AMBER Alert** (Verenigde Staten, Canada, Australië)…
 
 Gemaakt voor: 🇳🇱 Nederland · 🇧🇪 België (Vlaanderen) (en alle andere landen in de tabel hieronder).
