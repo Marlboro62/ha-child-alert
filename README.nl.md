@@ -72,9 +72,8 @@ Mis je een land? Stel het voor in de [GitHub-issues](https://github.com/Marlboro
 
 ## Installatie
 
-1. **Instellingen › Marketplace** (of HACS vóór 2026.11) › menu ⋮ › **Aangepaste repositories**: voeg `https://github.com/Marlboro62/ha-child-alert` toe, type **Integratie**.
-2. Installeer **Alerte Enlèvement** en herstart Home Assistant.
-3. **Instellingen › Apparaten & diensten › Integratie toevoegen** › **Alerte Enlèvement**, en kies je land (het land van Home Assistant wordt voorgesteld). In de Verenigde Staten kies je daarna je staat, of "—" voor alle staten.
+1. **Instellingen › Marketplace** (of HACS vóór 2026.11): zoek **Alerte Enlèvement**, installeer het en herstart Home Assistant.
+2. **Instellingen › Apparaten & diensten › Integratie toevoegen** › **Alerte Enlèvement**, en kies je land (het land van Home Assistant wordt voorgesteld). In de Verenigde Staten kies je daarna je staat, of "—" voor alle staten.
 
 Je kunt de integratie meerdere keren toevoegen om meerdere landen te volgen (bijvoorbeeld Nederland en België in de grensstreek).
 

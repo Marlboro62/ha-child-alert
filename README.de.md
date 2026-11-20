@@ -72,9 +72,8 @@ Fehlt ein Land? Schlag es in den [GitHub-Issues](https://github.com/Marlboro62/h
 
 ## Installation
 
-1. **Einstellungen › Marketplace** (oder HACS vor 2026.11) › Menü ⋮ › **Benutzerdefinierte Repositories**: `https://github.com/Marlboro62/ha-child-alert` hinzufügen, Typ **Integration**.
-2. **Alerte Enlèvement** installieren und Home Assistant neu starten.
-3. **Einstellungen › Geräte & Dienste › Integration hinzufügen** › **Alerte Enlèvement**, dann dein Land wählen (das Land von Home Assistant ist vorgeschlagen). In den USA danach deinen Bundesstaat wählen, oder „—“ für alle.
+1. **Einstellungen › Marketplace** (oder HACS vor 2026.11): nach **Alerte Enlèvement** suchen, installieren und Home Assistant neu starten.
+2. **Einstellungen › Geräte & Dienste › Integration hinzufügen** › **Alerte Enlèvement**, dann dein Land wählen (das Land von Home Assistant ist vorgeschlagen). In den USA danach deinen Bundesstaat wählen, oder „—“ für alle.
 
 Du kannst die Integration mehrmals hinzufügen, um mehrere Länder zu verfolgen (zum Beispiel Schweiz und Frankreich als Grenzgänger).
 
